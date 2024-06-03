@@ -15,13 +15,13 @@ class TestCreateCourier:
     def test_empty_login_create_courier(self):
         mod_payload = helper.ModifyData.modify_create_courier_body("login", "")
         response = CourierApi.create_courier(mod_payload)
-        assert response.status_code == 400
+        assert response.status_code == 400 and "Недостаточно данных для создания учетной записи" in response.text
 
     @allure.title('Проверка ошибки при создании курьера с пустым паролем')
     def test_empty_password_create_courier(self):
         mod_payload = helper.ModifyData.modify_create_courier_body("password", "")
         response = CourierApi.create_courier(mod_payload)
-        assert response.status_code == 400
+        assert response.status_code == 400 and "Недостаточно данных для создания учетной записи" in response.text
 
     @allure.title('Проверка ошибки при создании курьера с логином, который уже есть')
     def test_create_courier_duplicate(self, get_payload, auth_courier, remove_courier):

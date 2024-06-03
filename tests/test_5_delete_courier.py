@@ -12,7 +12,7 @@ class TestDeleteCourier:
     @allure.title('Проверка ошибки при удалении курьера без указания id')
     def test_delete_courier_without_id(self):
         response = CourierApi.delete_courier_without_id()
-        assert response.status_code == 404
+        assert response.status_code == 404 and "Not Found" in response.text
 
     @allure.title('Проверка ошибки при удалении курьера с несуществующим id')
     def test_delete_courier_by_invalid_id(self, make_courier, auth_courier, remove_courier):

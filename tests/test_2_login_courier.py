@@ -18,7 +18,7 @@ class TestLoginCourier:
         response = CourierApi.login_courier(mod_payload)
         id_courier = auth_courier(make_courier)
         remove_courier(id_courier)
-        assert response.status_code == 400
+        assert response.status_code == 400 and "Недостаточно данных для входа" in response.text
 
     @allure.title('Проверка ошибки при попытке авторизоваться без поля password')
     def test_login_courier_empty_password(self, make_courier, auth_courier, remove_courier):
@@ -26,7 +26,7 @@ class TestLoginCourier:
         response = CourierApi.login_courier(new_payload)
         id_courier = auth_courier(make_courier)
         remove_courier(id_courier)
-        assert response.status_code == 400
+        assert response.status_code == 400 and "Недостаточно данных для входа" in response.text
 
     @allure.title('Проверка ошибки при попытке авторизоваться под несуществующим пользователем ')
     def test_login_courier_invalid_data(self, make_courier, auth_courier, remove_courier):

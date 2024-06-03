@@ -17,4 +17,4 @@ class TestGetOrder:
     @allure.title('Проверка ошибки при попытке получения заказа без указания номера')
     def test_get_order_without_track(self):
         response = OrderApi.get_order_without_track()
-        assert response.status_code == 400
+        assert response.status_code == 400 and "Недостаточно данных для поиска" in response.text

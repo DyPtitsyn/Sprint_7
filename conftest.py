@@ -1,5 +1,4 @@
 import pytest
-import data
 import helper
 from courier_api import CourierApi
 from order_api import OrderApi
@@ -7,7 +6,7 @@ from order_api import OrderApi
 
 @pytest.fixture(scope='function')
 def get_payload():
-    payload = data.generate_payload_for_create_courier()
+    payload = helper.generate_payload_for_create_courier()
     return payload
 
 
@@ -36,7 +35,7 @@ def remove_courier(request):
 
 @pytest.fixture(scope='function')
 def make_order():
-    payload = data.generate_payload_for_create_order()
+    payload = helper.generate_payload_for_create_order()
     response = OrderApi.create_order(payload)
     id_track = response.json()["track"]
     return id_track
